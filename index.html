@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructivo y Práctica Guiada para Resolución de Conflictos con Visual Studio Code y GitHub</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Instructivo y Práctica Guiada para Resolución de Conflictos</h1>
+        <p class="lead text-center">Utilizando Visual Studio Code y GitHub</p>
+        
+        <h2>Introducción</h2>
+        <p>En el desarrollo colaborativo de software, es común enfrentar conflictos al trabajar en el mismo archivo. Este instructivo te guiará en la resolución de conflictos utilizando Visual Studio Code (VS Code) y GitHub.</p>
+        
+        <h2>Requisitos</h2>
+        <ul>
+            <li>Tener instalado <a href="https://git-scm.com/downloads">Git</a>.</li>
+            <li>Tener instalado <a href="https://code.visualstudio.com/Download">Visual Studio Code</a>.</li>
+            <li>Tener una cuenta de <a href="https://github.com/">GitHub</a>.</li>
+        </ul>
+        
+        <h2>Pasos Preparatorios</h2>
+        <ol>
+            <li><b>Configurar Git:</b>
+                <pre><code>git config --global user.name "Tu Nombre"
+git config --global user.email "tuemail@example.com"</code></pre>
+            </li>
+            <li><b>Clonar un Repositorio:</b>
+                <pre><code>git clone https://github.com/tu_usuario/tu_repositorio.git
+cd tu_repositorio</code></pre>
+            </li>
+        </ol>
+        
+        <h2>Instructivo Paso a Paso</h2>
+        
+        <h3>Paso 1: Trabajar en el mismo archivo</h3>
+        <p>Imagina que tú y tu compañera están trabajando en el mismo archivo en la rama <code>main</code>.</p>
+        
+        <h3>Paso 2: Realizar Cambios</h3>
+        <ol>
+            <li>Tu compañera realiza cambios en el archivo y realiza un commit:
+                <pre><code>echo "Cambios de la compañera" >> archivo.txt
+git add archivo.txt
+git commit -m "Añadido cambios de la compañera"</code></pre>
+            </li>
+            <li>Tú realizas cambios en el mismo archivo antes de actualizar tu copia local:
+                <pre><code>echo "Tus cambios" >> archivo.txt
+git add archivo.txt
+git commit -m "Añadido tus cambios"</code></pre>
+            </li>
+        </ol>
+        
+        <h3>Paso 3: Obtener Últimos Cambios y Generar un Conflicto</h3>
+        <ol>
+            <li>Intenta obtener los últimos cambios desde GitHub:
+                <pre><code>git pull origin main</code></pre>
+                <p>Aquí, Git generará un conflicto en <code>archivo.txt</code>.</p>
+            </li>
+        </ol>
+        
+        <h3>Paso 4: Resolver Conflictos en Visual Studio Code</h3>
+        <ol>
+            <li>Abre el repositorio en Visual Studio Code:
+                <pre><code>code .</code></pre>
+            </li>
+            <li>Ve al archivo con conflictos (<code>archivo.txt</code>). Verás marcadores de conflicto:
+                <pre><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+Tus cambios
+=======
+Cambios de la compañera
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code></pre>
+            </li>
+            <li>Selecciona cómo resolver el conflicto (aceptar tus cambios, los de tu compañera, ambos, o editar manualmente).
+                <ul>
+                    <li>Haz clic en "Accept Current Change" para aceptar tus cambios.</li>
+                    <li>Haz clic en "Accept Incoming Change" para aceptar los cambios de tu compañera.</li>
+                    <li>Haz clic en "Accept Both Changes" para mantener ambos cambios.</li>
+                    <li>O edita manualmente el archivo para resolver el conflicto.</li>
+                </ul>
+            </li>
+            <li>Después de resolver el conflicto, guarda el archivo.</li>
+            <li>Realiza el commit de la resolución del conflicto:
+                <pre><code>git add archivo.txt
+git commit -m "Resuelto conflicto en archivo.txt"</code></pre>
+            </li>
+        </ol>
+        
+        <h3>Paso 5: Subir Cambios a GitHub</h3>
+        <ol>
+            <li>Sube los cambios a GitHub:
+                <pre><code>git push origin main</code></pre>
+            </li>
+        </ol>
+        
+        <h2>Práctica Guiada</h2>
+        
+        <h3>Ejercicio: Resolver un Conflicto en la Misma Rama</h3>
+        <ol>
+            <li>Clona el repositorio de práctica:
+                <pre><code>git clone https://github.com/ejemplo/ejemplo-conflicto.git
+cd ejemplo-conflicto</code></pre>
+            </li>
+            <li>Ambos trabajan en el mismo archivo:</li>
+            <ul>
+                <li>Tu compañera realiza cambios y hace un commit:
+                    <pre><code>echo "Cambios de la compañera" >> archivo_conflicto.txt
+git add archivo_conflicto.txt
+git commit -m "Añadido cambios de la compañera"</code></pre>
+                </li>
+                <li>Tú realizas cambios y haces un commit:
+                    <pre><code>echo "Tus cambios" >> archivo_conflicto.txt
+git add archivo_conflicto.txt
+git commit -m "Añadido tus cambios"</code></pre>
+                </li>
+            </ul>
+            <li>Intenta obtener los últimos cambios desde GitHub:
+                <pre><code>git pull origin main</code></pre>
+                <p>Se generará un conflicto en <code>archivo_conflicto.txt</code>.</p>
+            </li>
+            <li>Abre VS Code y resuelve el conflicto en <code>archivo_conflicto.txt</code>.</li>
+            <li>Guarda los cambios y realiza el commit de la resolución:
+                <pre><code>git add archivo_conflicto.txt
+git commit -m "Resuelto conflicto en archivo_conflicto.txt"</code></pre>
+            </li>
+            <li>Sube los cambios a GitHub:
+                <pre><code>git push origin main</code></pre>
+            </li>
+        </ol>
+        
+        <h2>Conclusión</h2>
+        <p>Con este instructivo y práctica guiada, ahora sabes cómo resolver conflictos de manera eficiente utilizando Visual Studio Code y GitHub. La clave es mantener la calma, entender los cambios realizados y tomar decisiones informadas sobre cómo fusionar el trabajo de diferentes colaboradores en la misma rama.</p>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
